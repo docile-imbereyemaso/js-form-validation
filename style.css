@@ -49,4 +49,26 @@ form{
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+form>div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+form label{
+    flex-shrink: 0;
+    height: 50px;
+    width: 50px;
+    background-color: var(--accent-color);
+    fill: var(--base-color);
+    color: var(--base-color);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
