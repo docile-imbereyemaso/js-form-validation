@@ -1,10 +1,44 @@
 const form = document.querySelector("#form");
-const firstname = document.querySelector("#firstname-input");
-const emailInput = document.querySelector("#email-input");
-const passwordInput = document.querySelector("#password-input");
-const repeatPasswordInput  = document.querySelector("#repeat-password-input");
+let firstname = document.getElementById("firstname-input");
+let emailInput = document.getElementById("email-input");
+let passwordInput = document.getElementById("password-input");
+let repeatPasswordInput  = document.getElementById("repeat-password-input");
 
+form.addEventListener("submit",(event)=>{ 
+     let errors =[];
+    if(firstname){
+        errors = getSignupFormErrors(firstname,emailInput,passwordInput,repeatPasswordInput);
+    }else{
+         errors = getLoginFormErrors(emailInput.value,passwordInput.value);
+    }
 
-form.addEventListener("submit",(event)=>{
-    event.preventDefault();
+    if(errors.length>0){
+        event.preventDefault();
+    }
+    
 })
+
+function getSignupFormErrors(firstname,emailInput,passwordInput,repeatPasswordInput){
+   let errors =[];
+   
+    if(firstname.value===''  || firstname.value===null){
+        errors.push("the firstname is required!");
+        firstname.parentElement.classList.add("incorrect");       
+      
+    }
+
+     if(emailInput.value===''  || emailInput.value===null){
+        errors.push("the email is required!");
+        emailInput.parentElement.classList.add("incorrect");       
+      
+    }
+
+     if(passwordInput.value===''  || passwordInput.value===null){
+        errors.push("the password is required!");
+        passwordInput.parentElement.classList.add("incorrect");       
+      
+    }
+
+   return errors;
+   
+}
