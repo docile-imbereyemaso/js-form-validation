@@ -12,6 +12,7 @@
     padding: 0;
     box-sizing: border-box;
     outline: none;
+    text-decoration: none;
 }
 
 html{
@@ -121,4 +122,28 @@ form button{
 
 form button:hover{
 background-color: var(--text-color);
+}
+
+form button:focus{
+    background-color: var(--text-color);
+}
+
+a{
+    color: var(--accent-color);
+}
+a:hover{
+    text-decoration: underline;
+}
+
+form div.incorrect label{
+    background-color: #f06272;
+}
+form div.incorrect input{
+    border-color: #f06272;
+}
+@media(max-width:1100px){
+.wrapper{
+    width: min(600px,100%);
+    border-radius: 0;
+}
 }
