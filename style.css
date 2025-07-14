@@ -141,6 +141,16 @@ form div.incorrect label{
 form div.incorrect input{
     border-color: #f06272;
 }
+#error-message{
+    color: #f06272;
+    transition: all 150ms ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+#error-message.show{
+    opacity: 1;
+    transform:translateY(0) ;
+}
 @media(max-width:1100px){
 .wrapper{
     width: min(600px,100%);

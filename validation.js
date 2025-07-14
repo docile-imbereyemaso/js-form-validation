@@ -3,6 +3,7 @@ let firstname = document.getElementById("firstname-input");
 let emailInput = document.getElementById("email-input");
 let passwordInput = document.getElementById("password-input");
 let repeatPasswordInput  = document.getElementById("repeat-password-input");
+let errorMessage = document.getElementById("error-message");
 
 form.addEventListener("submit",(event)=>{ 
      let errors =[];
@@ -14,6 +15,8 @@ form.addEventListener("submit",(event)=>{
 
     if(errors.length>0){
         event.preventDefault();
+        errorMessage.innerText = errors.join(". ");
+        errorMessage.classList.add("show")
     }
     
 })
@@ -42,3 +45,14 @@ function getSignupFormErrors(firstname,emailInput,passwordInput,repeatPasswordIn
    return errors;
    
 }
+
+const allInputs = [firstname,emailInput,passwordInput,repeatPasswordInput];
+allInputs.forEach(inputs=>{
+    inputs.addEventListener("input",(event)=>{
+        if(event.target.parentElement.classList.contains("incorrect")){
+            event.target.parentElement.classList.remove("incorrect")
+        }
+        
+    })
+})
+ 
