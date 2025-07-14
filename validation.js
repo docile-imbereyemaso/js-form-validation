@@ -10,7 +10,7 @@ form.addEventListener("submit",(event)=>{
     if(firstname){
         errors = getSignupFormErrors(firstname,emailInput,passwordInput,repeatPasswordInput);
     }else{
-         errors = getLoginFormErrors(emailInput.value,passwordInput.value);
+         errors = getLoginFormErrors(emailInput,passwordInput);
     }
 
     if(errors.length>0){
@@ -41,16 +41,41 @@ function getSignupFormErrors(firstname,emailInput,passwordInput,repeatPasswordIn
         passwordInput.parentElement.classList.add("incorrect");       
       
     }
-
+       if(passwordInput.value.length<8){
+        errors.push("Password must have at least 8 Characters");
+         passwordInput.parentElement.classList.add("incorrect");   
+       }
+    if(passwordInput.value !==repeatPasswordInput.value){
+          errors.push("Password doesn't match repeated password!"); 
+          passwordInput.parentElement.classList.add("incorrect");   
+          repeatPasswordInput.parentElement.classList.add("incorrect");   
+    }
    return errors;
    
 }
 
+function getLoginFormErrors(emailInput,passwordInput){
+    let errors =[];
+if(emailInput.value===''  || emailInput.value===null){
+        errors.push("the email is required!");
+        emailInput.parentElement.classList.add("incorrect");       
+      
+    }
+
+     if(passwordInput.value===''  || passwordInput.value===null){
+        errors.push("the password is required!");
+        passwordInput.parentElement.classList.add("incorrect");       
+      
+    }
+
+    return errors
+}
 const allInputs = [firstname,emailInput,passwordInput,repeatPasswordInput];
 allInputs.forEach(inputs=>{
     inputs.addEventListener("input",(event)=>{
         if(event.target.parentElement.classList.contains("incorrect")){
-            event.target.parentElement.classList.remove("incorrect")
+            event.target.parentElement.classList.remove("incorrect");
+            errorMessage.innerText ='';
         }
         
     })
